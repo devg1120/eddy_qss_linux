@@ -1,0 +1,67 @@
+## Enable sudo
+sudo:
+  required
+
+# Test on Trusty
+dist:
+  trusty
+
+## Cache PIP installs across jobs
+cache:
+  - pip
+
+## Select test language
+language:
+  python
+
+## Select python version
+python:
+  - 3.4
+
+# Jobs environment variables
+env:
+  matrix:
+    - TEST=actions
+    - TEST=datatypes
+    - TEST=diagram
+    - TEST=export
+    - TEST=functions
+    - TEST=palette
+    - TEST=profiles
+    - TEST=tools
+
+## Test only master and dev branches
+branches:
+  only:
+    - master
+
+## Prepare build environment
+before_install:
+  - ./scripts/configure-travis.sh
+
+## Skip install step
+install:
+  true
+
+## Start X Virtual Framebuffer
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 5
+
+## Run automated tests using nose
+script:
+  - nosetests --tests=tests/test_${TEST}.py --verbosity=3 --with-cov --cov eddy --cov-report term-missing --cov-config .coveragerc
+
+# Report tests coverage
+after_success:
+  - coveralls
+
+# Setup notifications
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/aafeec4156a7fb26ef0c
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: change  # options: [always|never|change] default: always
+    on_start: never     # default: never

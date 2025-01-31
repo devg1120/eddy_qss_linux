@@ -1,0 +1,29 @@
+
+ /* menu */
+  QMenuBar  { background: gray; }
+
+ /* toolbar */
+  QToolBar  { background: #1e90ff; }
+  QComboBox { background: pink; }
+  QListView { background: red;  }
+
+  /* Main Window */
+  Session   { background: green ; }
+
+  /* Dock */
+  DockTitleWidget { background: CornflowerBlue ; }
+  ProjectExplorerWidget > QWidget { background: lime ; }
+  OverviewWidget  { background: white; }
+
+  /* Mdi */
+  QMdiArea { background: red ; }
+  QTabBar  { background: green ; }
+  QTabBar::tab  { background: red ; }
+/*  QTabWidget  { background: red ; } */
+
+
+  /* Status bar */
+  QStatusBar { background: yellow ; }
+   
+  /* View */
+  DiagramView {background: orange ; }

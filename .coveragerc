@@ -1,0 +1,7 @@
+[run]
+omit =
+    examples/*
+    resources/*
+    scripts/*
+    support/*
+    tests/*

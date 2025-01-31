@@ -1,0 +1,33 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource prefix="/fonts">
+  <file alias="Roboto-Black">../../resources/fonts/Roboto-Black.ttf</file>
+  <file alias="Roboto-BlackItalic">../../resources/fonts/Roboto-BlackItalic.ttf</file>
+  <file alias="Roboto-Bold">../../resources/fonts/Roboto-Bold.ttf</file>
+  <file alias="Roboto-BoldItalic">../../resources/fonts/Roboto-BoldItalic.ttf</file>
+  <file alias="Roboto-Italic">../../resources/fonts/Roboto-Italic.ttf</file>
+  <file alias="Roboto-Light">../../resources/fonts/Roboto-Light.ttf</file>
+  <file alias="Roboto-LightItalic">../../resources/fonts/Roboto-LightItalic.ttf</file>
+  <file alias="Roboto-Medium">../../resources/fonts/Roboto-Medium.ttf</file>
+  <file alias="Roboto-MediumItalic">../../resources/fonts/Roboto-MediumItalic.ttf</file>
+  <file alias="Roboto-Regular">../../resources/fonts/Roboto-Regular.ttf</file>
+  <file alias="Roboto-Thin">../../resources/fonts/Roboto-Thin.ttf</file>
+  <file alias="Roboto-ThinItalic">../../resources/fonts/Roboto-ThinItalic.ttf</file>
+  <file alias="RobotoCondensed-Bold">../../resources/fonts/RobotoCondensed-Bold.ttf</file>
+  <file alias="RobotoCondensed-BoldItalic">../../resources/fonts/RobotoCondensed-BoldItalic.ttf</file>
+  <file alias="RobotoCondensed-Italic">../../resources/fonts/RobotoCondensed-Italic.ttf</file>
+  <file alias="RobotoCondensed-Light">../../resources/fonts/RobotoCondensed-Light.ttf</file>
+  <file alias="RobotoCondensed-LightItalic">../../resources/fonts/RobotoCondensed-LightItalic.ttf</file>
+  <file alias="RobotoCondensed-Regular">../../resources/fonts/RobotoCondensed-Regular.ttf</file>
+  <file alias="RobotoMono-Bold">../../resources/fonts/RobotoMono-Bold.ttf</file>
+  <file alias="RobotoMono-BoldItalic">../../resources/fonts/RobotoMono-BoldItalic.ttf</file>
+  <file alias="RobotoMono-Italic">../../resources/fonts/RobotoMono-Italic.ttf</file>
+  <file alias="RobotoMono-Light">../../resources/fonts/RobotoMono-Light.ttf</file>
+  <file alias="RobotoMono-LightItalic">../../resources/fonts/RobotoMono-LightItalic.ttf</file>
+  <file alias="RobotoMono-Medium">../../resources/fonts/RobotoMono-Medium.ttf</file>
+  <file alias="RobotoMono-MediumItalic">../../resources/fonts/RobotoMono-MediumItalic.ttf</file>
+  <file alias="RobotoMono-Regular">../../resources/fonts/RobotoMono-Regular.ttf</file>
+  <file alias="RobotoMono-Thin">../../resources/fonts/RobotoMono-Thin.ttf</file>
+  <file alias="RobotoMono-ThinItalic">../../resources/fonts/RobotoMono-ThinItalic.ttf</file>
+</qresource>
+</RCC>

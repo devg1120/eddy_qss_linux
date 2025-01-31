@@ -1,0 +1,20 @@
+#
+# grep -rn  "#GSCOLOR" . > _GSCOLOR
+#
+
+./eddy/plugins/overview-v0.1/overview.py:202:        self.setStyleSheet("OverviewWidget {background: #ffffff ; }")   #GSCOLOR
+./eddy/plugins/project-explorer-v0.2/project_explorer.py:170:        self.setStyleSheet("QWidget {background: lime ; }")   #GSCOLOR
+./eddy/ui/dock.py:80:        self.setStyleSheet("DockTitleWidget {background: CornflowerBlue ; }")   #GSCOLOR
+./eddy/ui/mdi.py:62:        self.setStyleSheet("QMdiArea {background: red ; }")   #GSCOLOR
+./eddy/ui/session.py:181:        #self.mdi.setStyleSheet("QMdiArea {background: olive ; }")  #GSCOLOR
+./eddy/ui/session.py:183:        self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("olive")))  #GSCOLOR
+./eddy/ui/session.py:190:        #self.setStyleSheet("QMainWindow {background: #3366cc ; }")   #GSCOLOR
+./eddy/ui/session.py:191:        self.setStyleSheet("Session {background: green ; }")   #GSCOLOR
+./eddy/ui/session.py:882:        document.setStyleSheet("QToolBar {background: #1e90ff ; }")   #GSCOLOR
+./eddy/ui/session.py:886:        editor.setStyleSheet("QToolBar {background: #1e90ff ; }")   #GSCOLOR
+./eddy/ui/session.py:890:        view.setStyleSheet("QToolBar {background: #1e90ff ; }")     #GSCOLOR
+./eddy/ui/session.py:894:        grap.setStyleSheet("QToolBar {background: #1e90ff ; }")    #GSCOLOR
+./eddy/ui/session.py:942:        statusbar.setStyleSheet("QStatusBar {background: yellow ; }")   #GSCOLOR
+./eddy/ui/session.py:1006:        combobox.setStyleSheet(css)   #GSCOLOR
+./eddy/ui/view.py:99:        self.setStyleSheet("QGraphicsView {background: orange ; }")  #GSCOLOR
+
