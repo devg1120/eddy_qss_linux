@@ -1,0 +1,559 @@
+diff --git a/eddy-light.css b/eddy-light.css
+deleted file mode 100644
+index 1f51103..0000000
+--- a/eddy-light.css
++++ /dev/null
+@@ -1,77 +0,0 @@
+-/*
+- * https://note.cman.jp/color/base_color.cgi
+- */
+-
+-/* menu */
+-QMenuBar  { background: gray; }
+-
+-/* toolbar */
+-QToolBar  { background: silver; }
+-QComboBox { background: #f0f0f0; color: black; }
+-QListView { background: #f0f0f0;  }
+-
+-/* Main Window */
+-Session   { background: gray ; }
+-
+-/* Dock */
+-DockTitleWidget { background: CornflowerBlue ; }
+-PaletteWidget { background: #F0F0F0 ; }
+-ProjectExplorerWidget > QWidget { background: #F0F0F0 ; }
+-OverviewWidget  { background: white; }
+-
+-QTreeView::item {
+-   background: #F0F0F0 ; 
+-}
+-
+-QTreeView::item:selected {
+-border-bottom: 1px solid #567dbc;
+-}
+-
+-QTreeView::branch {
+-   background: #F0F0F0 ; 
+-}
+-
+-/*
+-QTreeView {
+-show-decoration-selected: 1;
+-}
+-
+-QTreeView::item {
+-border: 1px solid #d9d9d9;
+-border-top-color: transparent;
+-border-bottom-color: transparent;
+-}
+-
+-QTreeView::item:hover {
+-background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
+-border: 1px solid #bfcde4;
+-}
+-
+-QTreeView::item:selected {
+-border: 1px solid #567dbc;
+-}
+-
+-QTreeView::item:selected:active{
+-background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
+-}
+-
+-QTreeView::item:selected:!active {
+-background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
+-}
+-*/
+-
+-/* Mdi */
+-QMdiArea { background: gray ; }
+-QTabBar  { background: #f0f0f0 ; }
+-QTabBar::tab  { background: dimgrey ; }
+-/*  QTabWidget  { background: red ; } */
+-
+-
+-/* Status bar */
+-QStatusBar { background: gray ; }
+-   
+-/* View */
+-DiagramView {background: #f0f0f0 ; }
+-
+-
+-
+diff --git a/eddy-light.css.old b/eddy-light.css.old
+deleted file mode 100644
+index 0c634a2..0000000
+--- a/eddy-light.css.old
++++ /dev/null
+@@ -1,32 +0,0 @@
+-/*
+- * https://note.cman.jp/color/base_color.cgi
+- */
+-
+- /* menu */
+-  QMenuBar  { background: gray; }
+-
+- /* toolbar */
+-  QToolBar  { background: silver; }
+-  QComboBox { background: pink; }
+-  QListView { background: red;  }
+-
+-  /* Main Window */
+-  Session   { background: green ; }
+-
+-  /* Dock */
+-  DockTitleWidget { background: CornflowerBlue ; }
+-  ProjectExplorerWidget > QWidget { background: #F0F0F0 ; }
+-  OverviewWidget  { background: #F0F0F0; }
+-
+-  /* Mdi */
+-  QMdiArea { background: red ; }
+-  QTabBar  { background: green ; }
+-  QTabBar::tab  { background: red ; }
+-/*  QTabWidget  { background: red ; } */
+-
+-
+-  /* Status bar */
+-  QStatusBar { background: gray ; }
+-   
+-  /* View */
+-  DiagramView {background: orange ; }
+diff --git a/eddy/ui/session.py b/eddy/ui/session.py
+index 979fc4d..0d298c1 100644
+--- a/eddy/ui/session.py
++++ b/eddy/ui/session.py
+@@ -178,9 +178,7 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+         self.undostack = QtGui.QUndoStack(self)
+         self.mdi = MdiArea(self)
+ 
+-        #self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("olive")))  #GSCOLOR
+-        #self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("lavender")))  #GSCOLOR
+-        self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("whitesmoke")))  #GSCOLOR
++        self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("olive")))  #GSCOLOR
+ 
+         self.mf = MenuFactory(self)
+         self.pf = PropertyFactory(self)
+@@ -225,8 +223,7 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+ 
+         self.sgnReady.emit()
+ 
+-        #cssfile = "eddy.css"
+-        cssfile = "eddy-light.css"
++        cssfile = ("eddy.css")
+         css = self.readCssFile(cssfile)
+         self.setStyleSheet(css)
+         LOGGER.info('Session CSSFile setStyle: %s ', cssfile)
+@@ -401,13 +398,6 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+             self, objectName='syntax_check', triggered=self.doSyntaxCheck,
+             statusTip='Run syntax validation according to the selected profile'))
+ 
+-        ### GUSA APPEND ###
+-        self.addAction(QtGui.QAction(
+-            #QtGui.QIcon(':/icons/24/ic_spellcheck_black'), 'Css Load',
+-            #QtGui.QIcon(':/icons/24/ic_flip_to_back_black'), 'Css Load',
+-            QtGui.QIcon(':/icons/24/ic_visibility_back_black'), 'cssLoad',
+-            self, objectName='css_load', triggered=self.doCssLoad,
+-            statusTip='external css file load and set'))
+         #############################################
+         # DIAGRAM SPECIFIC
+         #################################
+@@ -758,7 +748,6 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+         menu.addAction(self.widget('editor_toolbar').toggleViewAction())
+         menu.addAction(self.widget('graphol_toolbar').toggleViewAction())
+         menu.addAction(self.widget('view_toolbar').toggleViewAction())
+-        menu.addAction(self.widget('window_toolbar').toggleViewAction())
+         self.addMenu(menu)
+ 
+         menu = QtWidgets.QMenu('\u200CView', objectName='view')
+@@ -915,10 +904,6 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+         #grap.setStyleSheet("QToolBar {background: #1e90ff ; }")    #GSCOLOR
+         self.addWidget(grap)
+ 
+-        grap  = QtWidgets.QToolBar('Window', objectName='window_toolbar')
+-        #grap.setStyleSheet("QToolBar {background: #1e90ff ; }")    #GSCOLOR
+-        self.addWidget(grap)
+-
+     def initPlugins(self):
+         """
+         Load and initialize application plugins.
+@@ -1006,15 +991,10 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+         toolbar.addWidget(self.widget('profile_switch'))
+         toolbar.addAction(self.action('syntax_check'))
+ 
+-        toolbar = self.widget('window_toolbar')
+-        toolbar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
+-        toolbar.addAction(self.action('css_load'))
+-
+         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('document_toolbar'))
+         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('editor_toolbar'))
+         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('view_toolbar'))
+         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('graphol_toolbar'))
+-        self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('window_toolbar'))
+ 
+     def initWidgets(self):
+         """
+@@ -1890,15 +1870,6 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
+         dialog = SyntaxValidationDialog(self.project, self)
+         dialog.exec_()
+ 
+-    @QtCore.Slot()
+-    def doCssLoad(self):
+-        print("doCssLoad")
+-
+-        cssfile = "eddy-light.css"
+-        css = self.readCssFile(cssfile)
+-        self.setStyleSheet(css)
+-        LOGGER.info('Session CSSFile setStyle: %s ', cssfile)
+-
+     @QtCore.Slot()
+     def doToggleGrid(self):
+         """
+diff --git a/mono_crash.d4716fb0.0.json b/mono_crash.d4716fb0.0.json
+deleted file mode 100644
+index f957f41..0000000
+--- a/mono_crash.d4716fb0.0.json
++++ /dev/null
+@@ -1,337 +0,0 @@
+-{
+-  "protocol_version" : "0.0.5",
+-  "configuration" : {
+-    "version" : "(6.8.0.105) (Debian 6.8.0.105+dfsg-3.2)",
+-    "tlc" : "__thread",
+-    "sigsgev" : "altstack",
+-    "notifications" : "epoll",
+-    "architecture" : "amd64",
+-    "disabled_features" : "none",
+-    "smallconfig" : "disabled",
+-    "bigarrays" : "disabled",
+-    "softdebug" : "enabled",
+-    "interpreter" : "enabled",
+-    "llvm_support" : "disabled",
+-    "suspend" : "hybrid"
+-  },
+-  "memory" : {
+-    "minor_gc_time" : "78586",
+-    "major_gc_time" : "21883",
+-    "minor_gc_count" : "3",
+-    "major_gc_count" : "2",
+-    "major_gc_time_concurrent" : "0"
+- },
+-  "threads" : [
+- {
+-    "is_managed" : true,
+-    "offset_free_hash" : "0x67680e00",
+-    "offset_rich_hash" : "0x6768102f",
+-    "crashed" : false,
+-    "native_thread_id" : "0x779c3c6bc780",
+-    "thread_info_addr" : "0x60564eac4890",
+-    "thread_name" : "mono",
+-    "ctx" : {
+-      "IP" : "0x779c3c518bcf",
+-      "SP" : "0x7ffffc7cd2a0",
+-      "BP" : "0x60564f529740"
+-  },
+-    "managed_frames" : [
+-  {
+-      "is_managed" : "false",
+-      "native_address" : "unregistered"
+-   }
+-,
+-  {
+-      "is_managed" : "true",
+-      "guid" : "91487213-BF39-4F4A-AF87-012594ABED2F",
+-      "token" : "0x00000",
+-      "native_offset" : "0x0",
+-      "filename" : "gtk-sharp.dll",
+-      "sizeofimage" : "0x162000",
+-      "timestamp" : "0x0",
+-      "il_offset" : "0x0000c"
+-   }
+-,
+-  {
+-      "is_managed" : "true",
+-      "guid" : "91487213-BF39-4F4A-AF87-012594ABED2F",
+-      "token" : "0x6004129",
+-      "native_offset" : "0x0",
+-      "filename" : "gtk-sharp.dll",
+-      "sizeofimage" : "0x162000",
+-      "timestamp" : "0x0",
+-      "il_offset" : "0x00000"
+-   }
+-,
+-  {
+-      "is_managed" : "true",
+-      "guid" : "001BA735-8D7D-400F-970E-3D26993EC862",
+-      "token" : "0x600029d",
+-      "native_offset" : "0x0",
+-      "filename" : "Pinta.exe",
+-      "sizeofimage" : "0x4a000",
+-      "timestamp" : "0x0",
+-      "il_offset" : "0x001f9"
+-   }
+-,
+-  {
+-      "is_managed" : "true",
+-      "guid" : "001BA735-8D7D-400F-970E-3D26993EC862",
+-      "token" : "0x00000",
+-      "native_offset" : "0x0",
+-      "filename" : "Pinta.exe",
+-      "sizeofimage" : "0x4a000",
+-      "timestamp" : "0x0",
+-      "il_offset" : "0x0002a"
+-   }
+-
+-  ],
+-  "unmanaged_frames" : [
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x605634399182",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x6056345b123b",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x6056345b948e",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x6056343cdc9f",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x779c3c442520",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x779c3c518bcf",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x779c38197256",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x779c381412b3",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "false",
+-    "native_address" : "0x779c33b402e2",
+-    "native_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "true",
+-    "guid" : "91487213-BF39-4F4A-AF87-012594ABED2F",
+-    "token" : "0x00000",
+-    "native_offset" : "0x0",
+-    "filename" : "gtk-sharp.dll",
+-    "sizeofimage" : "0x162000",
+-    "timestamp" : "0x0",
+-    "il_offset" : "0x00000"
+-  }
+-
+- ]
+-},
+-{
+-  "is_managed" : true,
+-  "offset_free_hash" : "0xd4716fb0",
+-  "offset_rich_hash" : "0xd471709b",
+-  "crashed" : true,
+-  "native_thread_id" : "0x779c38a00640",
+-  "thread_info_addr" : "0x779c34000b70",
+-  "thread_name" : "Finalizer",
+-  "ctx" : {
+-    "IP" : "0x779c3c4969fc",
+-    "SP" : "0x779c389ff600",
+-    "BP" : "0x3dd2"
+- },
+-  "managed_frames" : [
+- {
+-    "is_managed" : "false",
+-    "native_address" : "unregistered"
+-  }
+-,
+- {
+-    "is_managed" : "true",
+-    "guid" : "918680A3-1AA8-4CB8-9CFA-7CAB56EA29B8",
+-    "token" : "0x00000",
+-    "native_offset" : "0x0",
+-    "filename" : "glib-sharp.dll",
+-    "sizeofimage" : "0x1c000",
+-    "timestamp" : "0x0",
+-    "il_offset" : "0x0000c"
+-  }
+-,
+- {
+-    "is_managed" : "true",
+-    "guid" : "918680A3-1AA8-4CB8-9CFA-7CAB56EA29B8",
+-    "token" : "0x60000f9",
+-    "native_offset" : "0x0",
+-    "filename" : "glib-sharp.dll",
+-    "sizeofimage" : "0x1c000",
+-    "timestamp" : "0x0",
+-    "il_offset" : "0x000b5"
+-  }
+-,
+- {
+-    "is_managed" : "true",
+-    "guid" : "918680A3-1AA8-4CB8-9CFA-7CAB56EA29B8",
+-    "token" : "0x60000fe",
+-    "native_offset" : "0x0",
+-    "filename" : "glib-sharp.dll",
+-    "sizeofimage" : "0x1c000",
+-    "timestamp" : "0x0",
+-    "il_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "true",
+-    "guid" : "918680A3-1AA8-4CB8-9CFA-7CAB56EA29B8",
+-    "token" : "0x60000e8",
+-    "native_offset" : "0x0",
+-    "filename" : "glib-sharp.dll",
+-    "sizeofimage" : "0x1c000",
+-    "timestamp" : "0x0",
+-    "il_offset" : "0x00000"
+-  }
+-,
+- {
+-    "is_managed" : "true",
+-    "guid" : "12B418A7-818C-4CA0-893F-EEAAF67F1E7F",
+-    "token" : "0x00000",
+-    "native_offset" : "0x0",
+-    "filename" : "mscorlib.dll",
+-    "sizeofimage" : "0x49e000",
+-    "timestamp" : "0x0",
+-    "il_offset" : "0x0002a"
+-  }
+-
+- ],
+-"unmanaged_frames" : [
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x605634399182",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x6056345b123b",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x6056345b948e",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x6056346a82a0",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x6056346a8661",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x605634399c0e",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x6056343cdb1e",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c442520",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c4969fc",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c442476",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c4287f3",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c489676",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c4a0cfc",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c4a2a44",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "false",
+-  "native_address" : "0x779c3c4a5453",
+-  "native_offset" : "0x00000"
+- }
+-,
+-{
+-  "is_managed" : "true",
+-  "guid" : "918680A3-1AA8-4CB8-9CFA-7CAB56EA29B8",
+-  "token" : "0x00000",
+-  "native_offset" : "0x0",
+-  "filename" : "glib-sharp.dll",
+-  "sizeofimage" : "0x1c000",
+-  "timestamp" : "0x0",
+-  "il_offset" : "0x00000"
+- }
+-
+-]
+-}
+-]
+-}
+\ No newline at end of file
+diff --git a/mono_crash.mem.16850.1.blob b/mono_crash.mem.16850.1.blob
+deleted file mode 100644
+index 15dde8e..0000000
+Binary files a/mono_crash.mem.16850.1.blob and /dev/null differ
