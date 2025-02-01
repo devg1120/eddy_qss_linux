@@ -178,7 +178,9 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
         self.undostack = QtGui.QUndoStack(self)
         self.mdi = MdiArea(self)
 
-        self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("olive")))  #GSCOLOR
+        #self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("olive")))  #GSCOLOR
+        #self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("lavender")))  #GSCOLOR
+        self.mdi.setBackground(QtGui.QBrush(QtGui.QColor("whitesmoke")))  #GSCOLOR
 
         self.mf = MenuFactory(self)
         self.pf = PropertyFactory(self)
@@ -223,7 +225,8 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
 
         self.sgnReady.emit()
 
-        cssfile = ("eddy.css")
+        #cssfile = "eddy.css"
+        cssfile = "eddy-light.css"
         css = self.readCssFile(cssfile)
         self.setStyleSheet(css)
         LOGGER.info('Session CSSFile setStyle: %s ', cssfile)
@@ -398,6 +401,13 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
             self, objectName='syntax_check', triggered=self.doSyntaxCheck,
             statusTip='Run syntax validation according to the selected profile'))
 
+        ### GUSA APPEND ###
+        self.addAction(QtGui.QAction(
+            #QtGui.QIcon(':/icons/24/ic_spellcheck_black'), 'Css Load',
+            #QtGui.QIcon(':/icons/24/ic_flip_to_back_black'), 'Css Load',
+            QtGui.QIcon(':/icons/24/ic_visibility_back_black'), 'cssLoad',
+            self, objectName='css_load', triggered=self.doCssLoad,
+            statusTip='external css file load and set'))
         #############################################
         # DIAGRAM SPECIFIC
         #################################
@@ -748,6 +758,7 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
         menu.addAction(self.widget('editor_toolbar').toggleViewAction())
         menu.addAction(self.widget('graphol_toolbar').toggleViewAction())
         menu.addAction(self.widget('view_toolbar').toggleViewAction())
+        menu.addAction(self.widget('window_toolbar').toggleViewAction())
         self.addMenu(menu)
 
         menu = QtWidgets.QMenu('\u200CView', objectName='view')
@@ -904,6 +915,10 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
         #grap.setStyleSheet("QToolBar {background: #1e90ff ; }")    #GSCOLOR
         self.addWidget(grap)
 
+        grap  = QtWidgets.QToolBar('Window', objectName='window_toolbar')
+        #grap.setStyleSheet("QToolBar {background: #1e90ff ; }")    #GSCOLOR
+        self.addWidget(grap)
+
     def initPlugins(self):
         """
         Load and initialize application plugins.
@@ -991,10 +1006,15 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
         toolbar.addWidget(self.widget('profile_switch'))
         toolbar.addAction(self.action('syntax_check'))
 
+        toolbar = self.widget('window_toolbar')
+        toolbar.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
+        toolbar.addAction(self.action('css_load'))
+
         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('document_toolbar'))
         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('editor_toolbar'))
         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('view_toolbar'))
         self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('graphol_toolbar'))
+        self.addToolBar(QtCore.Qt.TopToolBarArea, self.widget('window_toolbar'))
 
     def initWidgets(self):
         """
@@ -1869,6 +1889,15 @@ class Session(HasActionSystem, HasMenuSystem, HasPluginSystem, HasWidgetSystem,
         """
         dialog = SyntaxValidationDialog(self.project, self)
         dialog.exec_()
+
+    @QtCore.Slot()
+    def doCssLoad(self):
+        print("doCssLoad")
+
+        cssfile = "eddy-light.css"
+        css = self.readCssFile(cssfile)
+        self.setStyleSheet(css)
+        LOGGER.info('Session CSSFile setStyle: %s ', cssfile)
 
     @QtCore.Slot()
     def doToggleGrid(self):

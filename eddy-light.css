@@ -1,0 +1,77 @@
+/*
+ * https://note.cman.jp/color/base_color.cgi
+ */
+
+/* menu */
+QMenuBar  { background: gray; }
+
+/* toolbar */
+QToolBar  { background: silver; }
+QComboBox { background: #f0f0f0; color: black; }
+QListView { background: #f0f0f0;  }
+
+/* Main Window */
+Session   { background: gray ; }
+
+/* Dock */
+DockTitleWidget { background: CornflowerBlue ; }
+PaletteWidget { background: #F0F0F0 ; }
+ProjectExplorerWidget > QWidget { background: #F0F0F0 ; }
+OverviewWidget  { background: white; }
+
+QTreeView::item {
+   background: #F0F0F0 ; 
+}
+
+QTreeView::item:selected {
+border-bottom: 1px solid #567dbc;
+}
+
+QTreeView::branch {
+   background: #F0F0F0 ; 
+}
+
+/*
+QTreeView {
+show-decoration-selected: 1;
+}
+
+QTreeView::item {
+border: 1px solid #d9d9d9;
+border-top-color: transparent;
+border-bottom-color: transparent;
+}
+
+QTreeView::item:hover {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #e7effd, stop: 1 #cbdaf1);
+border: 1px solid #bfcde4;
+}
+
+QTreeView::item:selected {
+border: 1px solid #567dbc;
+}
+
+QTreeView::item:selected:active{
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
+}
+
+QTreeView::item:selected:!active {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
+}
+*/
+
+/* Mdi */
+QMdiArea { background: gray ; }
+QTabBar  { background: #f0f0f0 ; }
+QTabBar::tab  { background: dimgrey ; }
+/*  QTabWidget  { background: red ; } */
+
+
+/* Status bar */
+QStatusBar { background: gray ; }
+   
+/* View */
+DiagramView {background: #f0f0f0 ; }
+
+
+

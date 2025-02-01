@@ -1,0 +1,32 @@
+/*
+ * https://note.cman.jp/color/base_color.cgi
+ */
+
+ /* menu */
+  QMenuBar  { background: gray; }
+
+ /* toolbar */
+  QToolBar  { background: silver; }
+  QComboBox { background: pink; }
+  QListView { background: red;  }
+
+  /* Main Window */
+  Session   { background: green ; }
+
+  /* Dock */
+  DockTitleWidget { background: CornflowerBlue ; }
+  ProjectExplorerWidget > QWidget { background: #F0F0F0 ; }
+  OverviewWidget  { background: #F0F0F0; }
+
+  /* Mdi */
+  QMdiArea { background: red ; }
+  QTabBar  { background: green ; }
+  QTabBar::tab  { background: red ; }
+/*  QTabWidget  { background: red ; } */
+
+
+  /* Status bar */
+  QStatusBar { background: gray ; }
+   
+  /* View */
+  DiagramView {background: orange ; }
